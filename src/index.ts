@@ -66,7 +66,9 @@ loaderStore.subscribe(({ progress, ready }) => {
 				if (progress === 1.0) {
 					window.Lenis.scrollTo(0, {
 						immediate: true,
+						lock: true,
 					})
+					lenis.stop()
 
 					animate(
 						loaderBarProgress.parentElement!,
