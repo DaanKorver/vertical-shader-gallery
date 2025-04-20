@@ -8,7 +8,7 @@ import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import { animate, AnimationPlaybackControls } from 'motion'
 import { OrbitControls } from 'three/examples/jsm/Addons.js'
-import { easeInOutExpo, easeOutExpo } from './core/easings'
+import { easeInOutExpo } from './core/easings'
 import { useProgress } from './core/loader'
 
 // Size
@@ -17,6 +17,7 @@ const sizes = useSize.current
 // Renderer
 const renderer = new WebGLRenderer({ antialias: true, alpha: true })
 renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 document.body.appendChild(renderer.domElement)
 
@@ -35,10 +36,6 @@ const viewport = getCurrentViewport(camera)
 
 // Lenis
 const lenis = new Lenis({ infinite: false })
-lenis.scrollTo(0, {
-	force: true,
-	immediate: true,
-})
 lenis.stop()
 window.Lenis = lenis
 
@@ -67,6 +64,10 @@ loaderStore.subscribe(({ progress, ready }) => {
 			ease: easeInOutExpo,
 			onComplete() {
 				if (progress === 1.0) {
+					window.Lenis.scrollTo(0, {
+						immediate: true,
+					})
+
 					animate(
 						loaderBarProgress.parentElement!,
 						{

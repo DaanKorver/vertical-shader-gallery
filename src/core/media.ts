@@ -27,7 +27,7 @@ export class Media {
 		// Set element to be invisible
 		this.element.classList.add('gl-image')
 		const img = element.querySelector('img') as HTMLImageElement
-		const src = img.currentSrc
+		const src = img.src
 
 		this.image = img
 		const texture = useTexture(src)
