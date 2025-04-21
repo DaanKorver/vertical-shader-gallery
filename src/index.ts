@@ -35,7 +35,10 @@ const controls = new OrbitControls(camera, renderer.domElement)
 const viewport = getCurrentViewport(camera)
 
 // Lenis
-const lenis = new Lenis({ infinite: false })
+const main = document.querySelector('main')!
+const ul = document.querySelector('ul')!
+
+const lenis = new Lenis({ infinite: false, wrapper: main, content: ul })
 lenis.stop()
 window.Lenis = lenis
 
@@ -79,7 +82,6 @@ loaderStore.subscribe(({ progress, ready }) => {
 							onComplete() {
 								loaderStore.setState({ ready: true })
 								lenis.start()
-								document.body.style.setProperty('overflow', 'initial')
 							},
 						}
 					)

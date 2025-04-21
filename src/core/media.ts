@@ -71,7 +71,6 @@ export class Media {
 		animate(0, 1, {
 			onUpdate: latest => {
 				this.animation.y = latest
-				this.uniforms.uImagePosition.value.y = lerp(0.25, 0, latest)
 			},
 			duration: 1,
 			delay: 0.3 + this.index * 0.1,

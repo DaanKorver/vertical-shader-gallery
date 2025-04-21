@@ -15,10 +15,10 @@ void main() {
   // Calculate bump
   float factorY = 1.0 - abs(ndcY);
   // Smooth out bump with smoothstep
-  factorY = smoothstep(0.3, 1.0, factorY);
+  factorY = smoothstep(0.2, 1.0, factorY);
 
   // Divide PI/2 because -1,1 coordinates from NDC
-  float intensity = 1.5;
+  float intensity = 2.;
   pos.z = sin(PI/2.0) * intensity * factorY;
 
   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
